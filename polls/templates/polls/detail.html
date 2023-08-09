@@ -1,0 +1,22 @@
+<body>
+    <p>
+        <img width=100 src="https://uploads-ssl.webflow.com/5ed0f381d2b21c219f260b60/5ee31dc8601c7f4fb62cb4c1_n17r-logo-red.png" alt="">
+    </p>
+
+    <form action="{% url 'polls:vote' question.id %}" method="post">
+        {% csrf_token %}
+       
+        <h1>{{ question.question_text }}</h1>
+       
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% endif %}
+     
+        {% for choice in question.choice_set.all %}
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+       
+        <input type="submit" value="Vote">
+     </form>
+</body>

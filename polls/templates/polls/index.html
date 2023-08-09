@@ -1,0 +1,14 @@
+<body>
+    <p>
+        <img width=100 src="https://uploads-ssl.webflow.com/5ed0f381d2b21c219f260b60/5ee31dc8601c7f4fb62cb4c1_n17r-logo-red.png" alt="">
+    </p>
+    <ol>
+    {% for question in questions %}
+        <li>
+            <a href="{% url 'polls:detail' question.id %}">
+                {{ question.question_text }}
+            </a>
+        </li>
+    {% endfor %}
+    </ol>
+</body>
